@@ -229,6 +229,11 @@ static struct platform_device *ok6410_devices[] __initdata = {
 	&ok6410_lcd_powerdev,
 	&s3c_device_adc,
 	&s3c_device_ts,
+	/* Linux kernel is not initialize the rtc device by default,
+	 * but it is support the s3c rtc device. So It need we add
+	 * the s3c_device_rtc to the ok6410_devices array.
+	 * */
+	&s3c_device_rtc,		/* ~~~~ add by guanc ~~~~ */
 };
 
 static void __init ok6410_map_io(void)
