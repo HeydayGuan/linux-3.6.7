@@ -85,6 +85,14 @@
 #define S3C6400_UCON_UCLK0	(1<<10)
 #define S3C6400_UCON_UCLK1	(3<<10)
 
+/* Add the s3c6410 uart config define. ~~~~~~~~ add by guanc ~~~~ */
+#define S3C6410_UCON_CLKMASK	(3<<10)
+#define S3C6410_UCON_CLKSHIFT	(10)
+#define S3C6410_UCON_PCLK	(0<<10)
+#define S3C6410_UCON_PCLK2	(2<<10)
+#define S3C6410_UCON_UCLK0	(1<<10)
+#define S3C6410_UCON_UCLK1	(3<<10)
+
 #define S3C2440_UCON2_FCLK_EN	  (1<<15)
 #define S3C2440_UCON0_DIVMASK	  (15 << 12)
 #define S3C2440_UCON1_DIVMASK	  (15 << 12)

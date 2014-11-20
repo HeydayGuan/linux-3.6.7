@@ -52,7 +52,7 @@
 
 static void __init s3c64xx_init_uarts(struct s3c2410_uartcfg *cfg, int no)
 {
-	s3c24xx_init_uartdevs("s3c6400-uart", s3c64xx_uart_resources, cfg, no);
+	s3c24xx_init_uartdevs("s3c6410-uart", s3c64xx_uart_resources, cfg, no);
 }
 
 /* table of supported CPUs */

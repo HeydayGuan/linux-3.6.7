@@ -830,7 +830,8 @@ static const char *s3c24xx_serial_type(struct uart_port *port)
 	case PORT_S3C2412:
 		return "S3C2412";
 	case PORT_S3C6400:
-		return "S3C6400/10";
+//		return "S3C6400/10";
+		return "S3C6410/10";	/* ~~~~ modify by guanc ~~~~ */
 	default:
 		return NULL;
 	}
@@ -1562,6 +1563,29 @@ static struct s3c24xx_serial_drv_data s3c6400_serial_drv_data = {
 	},
 };
 #define S3C6400_SERIAL_DRV_DATA ((kernel_ulong_t)&s3c6400_serial_drv_data)
+static struct s3c24xx_serial_drv_data s3c6410_serial_drv_data = {
+	.info = &(struct s3c24xx_uart_info) {
+		.name		= "Samsung S3C6410 UART",
+		.type		= PORT_S3C6400,
+		.fifosize	= 64,
+		.has_divslot	= 1,
+		.rx_fifomask	= S3C2440_UFSTAT_RXMASK,
+		.rx_fifoshift	= S3C2440_UFSTAT_RXSHIFT,
+		.rx_fifofull	= S3C2440_UFSTAT_RXFULL,
+		.tx_fifofull	= S3C2440_UFSTAT_TXFULL,
+		.tx_fifomask	= S3C2440_UFSTAT_TXMASK,
+		.tx_fifoshift	= S3C2440_UFSTAT_TXSHIFT,
+		.def_clk_sel	= S3C2410_UCON_CLKSEL2,
+		.num_clks	= 4,
+		.clksel_mask	= S3C6410_UCON_CLKMASK,
+		.clksel_shift	= S3C6410_UCON_CLKSHIFT,
+	},
+	.def_cfg = &(struct s3c2410_uartcfg) {
+		.ucon		= S3C2410_UCON_DEFAULT,
+		.ufcon		= S3C2410_UFCON_DEFAULT,
+	},
+};
+#define S3C6410_SERIAL_DRV_DATA ((kernel_ulong_t)&s3c6410_serial_drv_data)
 #else
 #define S3C6400_SERIAL_DRV_DATA (kernel_ulong_t)NULL
 #endif
@@ -1637,6 +1661,9 @@ static struct platform_device_id s3c24xx_serial_driver_ids[] = {
 	}, {
 		.name		= "s3c6400-uart",
 		.driver_data	= S3C6400_SERIAL_DRV_DATA,
+	}, {
+		.name		= "s3c6410-uart",
+		.driver_data	= S3C6410_SERIAL_DRV_DATA,
 	}, {
 		.name		= "s5pv210-uart",
 		.driver_data	= S5PV210_SERIAL_DRV_DATA,
